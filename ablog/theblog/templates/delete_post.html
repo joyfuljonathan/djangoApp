@@ -3,6 +3,7 @@
 {% block content %}
 
 {% if user.is_authenticated%}   
+{% if user.id == post.author.id%}
 
     <h1>Delete Post</h1>
     
@@ -20,6 +21,11 @@
 
 </form>
 </div>
+{% else %}
+
+(you are not allowed here (and you know it!)
+
+{%endif%}
 
 {% else%}
 
