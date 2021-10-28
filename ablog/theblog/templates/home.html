@@ -11,14 +11,17 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Posts</h1>
+  {% if user.is_authenticated%}
+    <h1>Hello, {{user.first_name}}</h1>
+  {%endif%}
+    <h2>Posts</h2>
 
 <ul>
 {% for post in object_list %}
   <li>
     <a href="{%url 'article-detail' post.pk%}">{{post.title}} </a> -
     <a href="{% url 'category' post.category %}">{{post.category}}-</a>
-    {{post.author.first_name}} - 
+    C - 
     {{ post.publication_date}}
 
     {% if user.is_authenticated%}
