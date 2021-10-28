@@ -18,6 +18,12 @@
     <button class="btn btn-primary">Post</button>
 
 </form>
+
+<script>
+    var name = "{{ user.id}}"
+    document.getElementById("authorInput").value = name;
+</script>
+
 </div>
 
 {% else%}
