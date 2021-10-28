@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+{% block title %} {{post.title_tag}}{% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <small>
+        By: {{post.author.first_name}} - 
+        {{ post.publication_date }}
+    </small><br>
+    {{post.body |safe }}
+    <br>
+    {% if user.is_authenticated%}
+        {% if user.id == post.author.id%}
+        <small> <a href="{%url 'update_post' post.pk%}">edit</a></small>
+        <br><br>
+        {%endif%}
+    {%endif%}
+    <a href="{%url 'home'%}" class ="btn btn-secondary">Back</a>
+</body>
+</html>
+
+{% endblock %}

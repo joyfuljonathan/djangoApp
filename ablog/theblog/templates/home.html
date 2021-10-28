@@ -1,0 +1,39 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Posts</h1>
+
+<ul>
+{% for post in object_list %}
+  <li>
+    <a href="{%url 'article-detail' post.pk%}">{{post.title}} </a> -
+    <a href="{% url 'category' post.category %}">{{post.category}}-</a>
+    {{post.author.first_name}} - 
+    {{ post.publication_date}}
+
+    {% if user.is_authenticated%}
+    <small> 
+      -<a href="{%url 'update_post' post.pk%}">edit</a>
+      <a href="{%url 'delete_post' post.pk%}">delete</a>
+    </small>
+    {% endif %}
+<br>
+    <!-- {{post.body}} -->
+    {{ post.body|slice:":300"|safe}}</li> 
+  {% endfor %}
+</ul>
+</body>
+</html>
+
+
+{% endblock %}
