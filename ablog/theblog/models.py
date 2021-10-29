@@ -20,6 +20,7 @@ class Post(models.Model):
     category = models.CharField(max_length=255, default='uncategorized')
     body = models.TextField()
     publication_date = models.DateTimeField(auto_now_add=True)
+    likes = models.ManyToManyField(User, related_name='blog_posts')
     
 
 
