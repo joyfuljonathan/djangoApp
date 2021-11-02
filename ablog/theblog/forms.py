@@ -11,7 +11,7 @@ class PostForm(forms.ModelForm):
         model = Post
         # fileds = ('title', 'title_tag', 'author', 'body')
         fileds = '__all__'
-        exclude = ()
+        exclude = ['likes']
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter title here'}),
