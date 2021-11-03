@@ -32,8 +32,28 @@
     <br>
     <form action="{% url 'like_post' post.pk%}" method="POST">
         {% csrf_token%}
-        <button type="submit", name="post_id", value="{{post.id}}", class= "btn btn-primary btn-sm">Like</button>-
+    {% if user.is_authenticated%}
+        {% if liked %}
+            <button type="submit", 
+            name="post_id", 
+            value="{{post.id}}", 
+            class= "btn btn-danger btn-sm">Unlike</button><br>
+            {{total_likes}} Likes
+        {% else %}
+            <button type="submit", 
+            name="post_id", 
+            value="{{post.id}}", 
+            class= "btn btn-primary btn-sm">Like</button><br>
+            {{total_likes}} Likes
+        {% endif %}
+    {% else %}
+        <!-- cant get a dummy button to display properly -->
+        <!-- <button   
+        class= "btn btn-primary btn-sm">Like</button><br> -->
+        <a href="{% url 'login'%}">Login</a><small> to like</small>
         {{total_likes}} Likes
+    {% endif %}
+    
 
     </form>
 </body>
