@@ -18,7 +18,9 @@
         {{ post.publication_date }}
     </small><br>
     <div class="clearfix">
+    {% if post.header_image%}
     <img src="{{ post.header_image.url}}" class="col-md-6 float-md-end mb-3 ms-md-3" alt="">
+    {% endif %}
     {{post.body |safe }}
 </div>
 
