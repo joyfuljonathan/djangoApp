@@ -9,15 +9,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+      .leftcolumn {   
+      float: left;
+      width: 75%;
+      }
+      /* Right column */
+      .rightcolumn {
+      float: left;
+      width: 25%;
+      padding-left: 20px;
+      }
+      /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+      @media screen and (max-width: 800px) {
+      .leftcolumn, .rightcolumn {   
+       width: 100%;
+      padding: 0;
+       }
+      }   
+    </style>
 </head>
 <body>
   {% if user.is_authenticated%}
     <h1>Hello, {{user.first_name}}</h1>
   {%endif%}
+<div class="leftcolumn" >
 <ul>
 {% for post in object_list %}
   <li>
-    <h3>{{post.title}}</h3><small>{{ post.publication_date}}</small>
+    <h2>{{post.title}}</h2><small>{{ post.publication_date}}</small>
     <a href="{% url 'category' post.category %}">{{post.category}}-</a> 
     <!-- <a href="{%url 'article-detail' post.pk%}">{{post.title}} </a> - -->
     
@@ -31,19 +51,40 @@
       {% endif%}
     {% endif %}
 <br>
-    <!-- {{post.body}} -->
-    <!-- bootstrap container div -->
-    <div class="container p-5 my-5 bg-primary text-white">
-    <h6>{{post.snippet}}</h6>
+
+    <div class="container container p-5 my-5 border">
+      <h6>{{post.snippet}}</h6> <small><a href="{%url 'article-detail' post.pk%}">Read More</a></small>
+      {% if post.header_image%}
+      <div class="clearfix">
+      <img src="{{ post.header_image.url}}" class="img-thumbnail" style="height: 400px;" alt="">
+      <!-- below are some bootstrap image classes to test -->
+      <!-- class="img-thumbnail"  -->
+      <!-- class="img-fluid" -->
+      </div>
+      {% endif %}
     </div>
-    <a href="{%url 'article-detail' post.pk%}">Read More</a>
     <!-- {{ post.body|slice:":300"|safe}}</li>  -->
   </li> 
   {% endfor %}
 </ul>
   </div>
+</div>
+
+<!-- for the right side of the page. i am thinking of adding a sub post option on the 
+post page to populate this. one idea would just be to let the poster plug in a url
+and have the link displyed nicely on the right hand side with thumbnail.  -->
+<div class="rightcolumn">
+  <ul style="list-style-type: none " >
+    {% for post in object_list %}
+    <li>
+      <div class="container p-5 my-5 bg-primary text-white">
+      <h6>{{post.snippet}}</h6> <small><a href="{%url 'article-detail' post.pk%}">Read More</a></small>
+      </div>
+    </li>
+  {% endfor %}
+  </ul>
+</div>
 </body>
 </html>
-
-
 {% endblock %}
+
