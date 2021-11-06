@@ -77,8 +77,8 @@ and have the link displyed nicely on the right hand side with thumbnail.  -->
   <ul style="list-style-type: none " >
     {% for post in object_list %}
     <li>
-      <div class="container p-5 my-5 bg-primary text-white">
-      <h6>{{post.snippet}}</h6> <small><a href="{%url 'article-detail' post.pk%}">Read More</a></small>
+      <div class="container p-5 my-5 bg-secondary text-white">
+      <h6>{{post.snippet}}</h6> <small><a href="{%url 'article-detail' post.pk%}" style="color: black;">Read More</a></small>
       </div>
     </li>
   {% endfor %}
