@@ -10,30 +10,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-      .leftcolumn {   
-      float: left;
-      width: 75%;
+       .leftcolumn {   
+      float: initial;
+      width: 13%;
+      position: fixed;
+      margin-right: 20px;
+      margin-top: 115px;
+      }
+      .middlecolumn {   
+      float: right;
+      width: 60%;
       }
       /* Right column */
       .rightcolumn {
-      float: left;
+      float: right;
       width: 25%;
       padding-left: 20px;
       }
       /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
       @media screen and (max-width: 800px) {
-      .leftcolumn, .rightcolumn {   
+      .middlecolumn, .rightcolumn {   
        width: 100%;
       padding: 0;
        }
       }   
+      @media screen and (max-width: 800px) {
+      .leftcolumn {   
+       width: 100%;
+      padding: 0;
+      display: none;
+       }
+      }   
     </style>
 </head>
-<body>
-  {% if user.is_authenticated%}
+<body class="bg-white">
+  {% if user.is_authenticated %}
     <h1>Hello, {{user.first_name}}</h1>
   {%endif%}
-<div class="leftcolumn" >
+
+<!-- stuff for left side. i want to make it go to the top when i scroll and 
+stick there -->
+<div class="leftcolumn bg-light">
+  <h4>Contacts</h4>
+<ul>
+  <li>
+    susan
+  </li>
+  <li>
+    timmy
+  </li>
+  <li>
+    susan
+  </li>
+  <li>
+    timmy
+  </li>
+</ul>
+</div>
+
+<!-- for the right side of the page. i am thinking of adding a sub post option on the 
+post page to populate this. one idea would just be to let the poster plug in a url
+and have the link displyed nicely on the right hand side with thumbnail.  -->
+<div class="rightcolumn">
+  <ul style="list-style-type: none " >
+    {% for post in object_list %}
+    <li>
+      <div class="container p-5 my-5 bg-secondary text-white">
+      <h6>{{post.snippet}}</h6> <small><a href="{%url 'article-detail' post.pk%}" style="color: black;">Read More</a></small>
+      </div>
+    </li>
+  {% endfor %}
+  </ul>
+</div>
+
+<div class="middlecolumn" >
 <ul>
 {% for post in object_list %}
   <li>
@@ -52,7 +102,7 @@
     {% endif %}
 <br>
 
-    <div class="container container p-5 my-5 border">
+    <div class="container bg-light p-5 my-5 border">
       <h6>{{post.snippet}}</h6> <small><a href="{%url 'article-detail' post.pk%}">Read More</a></small>
       {% if post.header_image%}
       <div class="clearfix">
@@ -70,20 +120,6 @@
   </div>
 </div>
 
-<!-- for the right side of the page. i am thinking of adding a sub post option on the 
-post page to populate this. one idea would just be to let the poster plug in a url
-and have the link displyed nicely on the right hand side with thumbnail.  -->
-<div class="rightcolumn">
-  <ul style="list-style-type: none " >
-    {% for post in object_list %}
-    <li>
-      <div class="container p-5 my-5 bg-secondary text-white">
-      <h6>{{post.snippet}}</h6> <small><a href="{%url 'article-detail' post.pk%}" style="color: black;">Read More</a></small>
-      </div>
-    </li>
-  {% endfor %}
-  </ul>
-</div>
 </body>
 </html>
 {% endblock %}
