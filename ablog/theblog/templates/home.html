@@ -18,14 +18,19 @@
       margin-top: 115px;
       }
       .middlecolumn {   
-      float: right;
+      margin-left: 200px;
       width: 60%;
       }
       /* Right column */
       .rightcolumn {
-      float: right;
+      /* float: right; */
+      margin-left: 1000px;
+      margin-top: auto;
       width: 25%;
       padding-left: 20px;
+      overflow: scroll;
+      height: 1000px;
+      position: fixed;
       }
       /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
       @media screen and (max-width: 800px) {
@@ -44,13 +49,16 @@
     </style>
 </head>
 <body class="bg-white">
-  {% if user.is_authenticated %}
+  <!-- {% if user.is_authenticated %}
     <h1>Hello, {{user.first_name}}</h1>
-  {%endif%}
+  {%endif%} -->
 
 <!-- stuff for left side. i want to make it go to the top when i scroll and 
 stick there -->
 <div class="leftcolumn bg-light">
+   {% if user.is_authenticated %}
+    <h4>Hello, {{user.first_name}}</h4>
+  {%endif%}
   <h4>Contacts</h4>
 <ul>
   <li>
@@ -72,6 +80,7 @@ stick there -->
 post page to populate this. one idea would just be to let the poster plug in a url
 and have the link displyed nicely on the right hand side with thumbnail.  -->
 <div class="rightcolumn">
+
   <ul style="list-style-type: none " >
     {% for post in object_list %}
     <li>
