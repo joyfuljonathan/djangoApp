@@ -8,17 +8,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Document</title>
     <style>
        .leftcolumn {   
       float: initial;
       width: 13%;
       position: fixed;
-      margin-right: 20px;
-      margin-top: 115px;
+      margin-right: 30px;
+      margin-top: 80px;
       }
       .middlecolumn {   
       margin-left: 200px;
+      margin-top: 5px;
       width: 60%;
       }
       /* Right column */
@@ -34,13 +36,15 @@
       }
       /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
       @media screen and (max-width: 800px) {
-      .middlecolumn, .rightcolumn {   
+      .middlecolumn  {   
        width: 100%;
+       margin-left: 0px;
       padding: 0;
+      margin: none;
        }
       }   
       @media screen and (max-width: 800px) {
-      .leftcolumn {   
+      .leftcolumn, .rightcolumn {   
        width: 100%;
       padding: 0;
       display: none;
@@ -92,7 +96,7 @@ and have the link displyed nicely on the right hand side with thumbnail.  -->
   </ul>
 </div>
 
-<div class="middlecolumn" >
+<div name= "middle" class="middlecolumn" id="middle">
 <ul>
 {% for post in object_list %}
   <li>
@@ -115,7 +119,8 @@ and have the link displyed nicely on the right hand side with thumbnail.  -->
       <h6>{{post.snippet}}</h6> <small><a href="{%url 'article-detail' post.pk%}">Read More</a></small>
       {% if post.header_image%}
       <div class="clearfix">
-      <img src="{{ post.header_image.url}}" class="img-thumbnail" style="height: 400px;" alt="">
+        <img src="{{ post.header_image.url}}" class="img-fluid" alt="">
+        <!-- <img src="{{ post.header_image.url}}" class="img-thumbnail" style="height: 400px;" alt=""> -->
       <!-- below are some bootstrap image classes to test -->
       <!-- class="img-thumbnail"  -->
       <!-- class="img-fluid" -->
