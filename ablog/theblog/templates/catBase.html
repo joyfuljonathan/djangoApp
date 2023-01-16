@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+}
+</style>
+</head>
+<body>
+
+{% if cat_menu%}									
+{%for item in cat_menu%}					
+<a tabindex="-1" href="{% url 'category' item %}">{{item}}</a>	
+	<br>
+	<h1>test</h1>
+	{% if cat_menu2%}		
+	{%for item2 in cat_menu2%}
+	<a tabindex="-1" href="{% url 'category2' item2 %}">{{item2}}</a>	
+	{%endfor%}
+	{%endif%}		
+{%endfor%}													
+{%endif%}									
+									
+									
+																			
+
+<div class="container">
+    {% block content %}
+
+    {% endblock %}
+</div>
+<script>
+$(document).ready(function(){
+  $('.dropdown-submenu a.test').on("click", function(e){
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+  });
+});
+</script>
+
+</body>
+</html>

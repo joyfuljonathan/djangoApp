@@ -1,0 +1,87 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+    <style>
+       .leftcolumn {   
+      float: initial;
+      width: 13%;
+      position: fixed;
+      margin-right: 30px;
+      margin-top: 80px;
+      }
+      .middlecolumn {   
+      margin-left: 200px;
+      margin-top: 5px;
+      width: 60%;
+      }
+      /* Right column */
+      .rightcolumn {
+      /* float: right; */
+      margin-left: 1000px;
+      margin-top: auto;
+      width: 25%;
+      padding-left: 20px;
+      overflow: scroll;
+      height: 1000px;
+      position: fixed;
+      }
+      /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+      @media screen and (max-width: 800px) {
+      .middlecolumn  {   
+       width: 100%;
+       margin-left: 0px;
+      padding: 0;
+      margin: none;
+       }
+      }   
+      @media screen and (max-width: 800px) {
+      .leftcolumn, .rightcolumn {   
+       width: 100%;
+      padding: 0;
+      display: none;
+       }
+      }   
+    </style>
+</head>
+<body class="bg-white">
+  <!-- {% if user.is_authenticated %}
+    <h1>Hello, {{user.first_name}}</h1>
+  {%endif%} -->
+
+<!-- stuff for left side. i want to make it go to the top when i scroll and 
+stick there -->
+
+   {% if user.is_authenticated %}
+    <h4>Hello, {{user.first_name}}</h4>
+  {%endif%}
+
+  <div name= "middle" class="middlecolumn" id="middle">
+  <ul>
+    {% for product in object_list %}
+    <li>
+      <!-- <h1>hello</h1> -->
+      <h1>{{product.product_name}}</h1>
+      <br>
+      <div class="clearfix">
+        <!-- the code below displays the image uploaded to the database -->
+        <!-- <img src="{{ product.product_image.url}}" class="img-fluid" alt=""> -->
+        <!-- the code below goes to product image link on Esco server -->
+        <img src="{{ product.product_snippet}}" class="img-fluid" alt="">
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  </div>
+</body>
+</html>
+{% endblock %}
+

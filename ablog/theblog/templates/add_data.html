@@ -1,0 +1,53 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+
+{% if user.is_authenticated%}   
+    
+    <h1>Add Blog Post</h1>
+    
+    <br><br>
+    <!-- bootstrab class for form -->
+<div class="mb-3">
+<form method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+    <button class="btn btn-primary">Post</button>
+
+</form>
+<br><br><br>
+<canvas id="myCanvas"></canvas>
+
+<script>
+    var name = "{{ user.id}}"
+    document.getElementById("authorInput").value = name;
+</script>
+
+<!-- canvas code -->
+<script>
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    let x = 0; 
+    ctx.fillStyle = "#FF0000";
+    myRect = ctx.fillRect(x, 0, 150, 175);
+    function animate(){
+        if(x<200){
+            x += 1;
+        }
+        requestAnimationFrame(animate)
+    }
+    animate();
+</script>
+
+</div>
+
+{% else%}
+
+{you are not allowed here (and you know it!)}
+
+{% endif %}
+
+{% endblock %}

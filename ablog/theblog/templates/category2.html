@@ -27,11 +27,11 @@ html {
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  margin: 10px;
+  margin: 8px;
 }
 
 .about-section {
-  padding: 70px;
+  padding: 50px;
   text-align: center;
   background-color: #474e5d;
   color: white;
@@ -57,10 +57,7 @@ html {
   display: inline-block;
   padding: 8px;
   color: white;
-  /* background-color: #000; */
-  /* background-color: #EB365D; */
-  background-color: #363233;
-  /* background-color: #FA562D; */
+  background-color: #000;
   text-align: center;
   cursor: pointer;
   width: 100%;
@@ -82,22 +79,41 @@ html {
 
 <div class="about-section">
   <h1>ECOLOGICS</h1>
+
 </div>
 
 
+{% if category_products%}
+{% for productdata in category_products%}
 
-<!-- <h2 style="text-align:center">Products</h2> -->
+<h>{{productdata.category}}</h>
+
+{% endfor %}
+{% endif %}
+
+
+
+{% if category2_products%}
+
+<h1>{{cats}} </h1>
+
 <div class="row">
-{% for productdata in object_list %}
+{% for productdata in category2_products%}
   <div class="column">
     <div class="card">
+      <!-- <img src="{{ post.header_image.url}}" alt="Jane" style="width:100%"> -->
       <img src="{{ productdata.imgURL1}}" alt="Jane" style="width:100%">
+	<h5>middle category: {{productdata.middle_category}}</h5>
       <div class="container">
         <h2>{{productdata.product_name}}</h2>
-	<h2>{{productdata.category}}➡{{productdata.middle_category}}</h2>
+	<!-- <p>{{productdata.short_description|slice:":150"|safe}}</p> -->
   <p class="title">{{productdata.maker}}</p>
-	<h5>category: {{productdata.category}}</h5>
-	<h5>middle category: {{productdata.middle_category}}</h5>
+	<!-- <h5>{{productdata.product_name}}</h5> -->
+	<!-- <h5>general name: {{productdata.general_name}}</h5> -->
+	<!-- <h5>keyword: {{productdata.keyword}}</h5>q -->
+	<!-- <h5>sub category: {{productdata.sub_category}}</h5> -->
+	<!-- <h5>country: {{productdata.country_of_origin}}</h5><br> -->
+	<!-- <p>Specifications <br>{{productdata.spec| safe}}</p> -->
   <p><button class="button"><a href="{%url 'product-detail' productdata.pk%}">See Details</a></button></p>
       </div>
     </div>
@@ -105,6 +121,9 @@ html {
  {% endfor %}
 </div>
 
+{% else%}
+<h2>Sorry this page does not exist...</h2>
+{%endif%}
 
 </body>
 </html>
