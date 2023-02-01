@@ -1,7 +1,7 @@
 # from django.shortcuts import render
 from django.http.response import HttpResponse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Category, Post
+from .models import Category, Post, Product, ProductData, Category2, HomeProductData
 from .forms import PostForm, EditForm
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, get_object_or_404
@@ -10,16 +10,39 @@ from django.http import HttpResponseRedirect
 #     return render(request, 'home.html', {})
 
 class HomeView(ListView):
-    model = Post
+    # model = Post
+    model = HomeProductData
     template_name = 'home.html'
-    ordering = ['-publication_date']
+    # ordering = ['-publication_date']
+
+
+    def get_context_data(self, *args, **kwargs): 
+        #  cat_menu = Category.objects.all()
+         cat_menu2 = Category2.objects.all()
+         context = super(HomeView, self).get_context_data(*args, **kwargs)
+         context["cat_menu"] = cat_menu2
+         return context
+
+    def get_context_data(self, *args, **kwargs): 
+         cat_menu = Category.objects.all()
+         cat_menu2 = Category2.objects.all()
+         #allCats = 
+         context = super(HomeView, self).get_context_data(*args, **kwargs)
+         context["cat_menu"] = cat_menu
+         return context    
+
+
+
+class ProductView(ListView):
+    model = ProductData
+    template_name = 'products.html'
+    # ordering = ['-publication_date']
 
     def get_context_data(self, *args, **kwargs): 
         cat_menu = Category.objects.all()
-        context = super(HomeView, self).get_context_data(*args, **kwargs)
+        context = super(ProductView, self).get_context_data(*args, **kwargs)
         context["cat_menu"] = cat_menu
         return context
-
 
 class ArticleDetailView(DetailView):
     model = Post
@@ -36,6 +59,28 @@ class ArticleDetailView(DetailView):
         context["total_likes"] = total_likes
         return context
 
+class ProductDetailView(DetailView):
+    model = ProductData
+    template_name = 'productDetail.html'
+    
+
+    def get_context_data(self, *args, **kwargs): 
+        cat_menu = Category.objects.all()
+        context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
+        context["cat_menu"] = cat_menu
+        return context
+
+class HomeProductDetailView(DetailView):
+    model = HomeProductData
+    template_name = 'homeProductDetail.html'
+
+    def get_context_data(self, *args, **kwargs): 
+        cat_menu = Category.objects.all()
+        context = super(HomeProductDetailView, self).get_context_data(*args, **kwargs)
+        context["cat_menu"] = cat_menu
+        #context["home_product_data"] = home_product_data
+        return context
+
 class AddPostView(CreateView):
     model = Post
     form_class = PostForm
@@ -47,9 +92,19 @@ class AddPostView(CreateView):
         context["cat_menu"] = cat_menu
         return context
 
+class AddDataView(CreateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'add_data.html'
+
+    def get_context_data(self, *args, **kwargs): 
+        cat_menu = Category.objects.all()
+        context = super(AddDataView, self).get_context_data(*args, **kwargs)
+        context["cat_menu"] = cat_menu
+        return context
+
 class AddCategoryView(CreateView):
     model = Category
-    # form_class = PostForm
     template_name = 'add_category.html'   
     fields = '__all__'
 
@@ -59,24 +114,31 @@ class AddCategoryView(CreateView):
         context["cat_menu"] = cat_menu
         return context
 
+
+class AddCategory2View(CreateView):
+    model = Category2
+    template_name = 'add_category2.html'   
+    fields = '__all__'
+
+    def get_context_data(self, *args, **kwargs): 
+        cat_menu2 = Category2.objects.all()
+        context = super(AddCategory2View, self).get_context_data(*args, **kwargs)
+        context["cat_menu2"] = cat_menu2
+        return context
+
+#def CategoryView(request, cats):
+    #category_products = ProductData.objects.filter(category=cats.replace('-', ' '))
+    #return render(request, 'categories.html', {'cats': cats.replace('-', ' '), 'category_products': category_products})
+
 def CategoryView(request, cats):
-    category_posts = Post.objects.filter(category=cats.replace('-', ' '))
-    
-    # def get_context_data(self, *args, **kwargs): 
-    #     cat_menu = Category.objects.all()
-    #     context = super(CategoryView, self).get_context_data(*args, **kwargs)
-    #     context["cat_menu"] = cat_menu
-    #     return context
-    return render(request, 'categories.html', {'cats': cats.replace('-', ' '), 'category_posts': category_posts})
-         
-    # everything below is pre bootstrap form styling 
-    # add all fields ↓
-    # fields = '__all__'
-    
-    # or add fields one by one ↓
-    # fields = ('title', 'body')
-    # the above ↑ did not work becasue of an integrity error 
-    
+    category_products = ProductData.objects.filter(category=cats.replace('-', ' '))
+    return render(request, 'categories.html', {'cats': cats.replace('-', ' '), 'category_products': category_products})
+  
+
+def Category2View(request, cats2):
+    category2_products = ProductData.objects.filter(category2=cats2.replace('-', ' '))
+    return render(request, 'category2.html', {'cats2': cats2.replace('-', ' '), 'category2_products': category2_products})
+           
 class UpdatePostView(UpdateView):
     model = Post
     template_name = 'update_post.html'

@@ -1,4 +1,5 @@
 
+{% block content %}
 <!DOCTYPE html>
 
 <html lang="en">
@@ -406,9 +407,12 @@
                         </div>
                         <div class="product-image-slider">
                             <img src="{{ productdata.imgURL1}}" alt=""  class="image-list">
-                            <img src="{{ productdata.imgURL2}}" alt=""  class="image-list">
-                            <img src="{{ productdata.imgURL3}}" alt=""  class="image-list">
-                            <img src="{{ productdata.imgURL1}}" alt=""  class="image-list">
+				{% if productdata.imgURL2%}
+				    <img src="{{ productdata.imgURL2}}" alt=""  class="image-list">
+				{% endif %}
+				{% if productdata.imgURL3%}
+				    <img src="{{ productdata.imgURL3}}" alt=""  class="image-list">
+				{% endif %}
                         </div>
                     </div>
                 </div>
@@ -490,3 +494,4 @@ sliderImageList[3].onclick = function(){
     </script>
 </body>
 </html>
+{% endblock %}

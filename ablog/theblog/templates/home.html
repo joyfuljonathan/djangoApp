@@ -81,7 +81,7 @@ html {
 <body>
 
 <div class="about-section">
-  <h1>ECOLOGICS</h1>
+  <h1>MerelyCommerce</h1>
 </div>
 
 
@@ -89,19 +89,21 @@ html {
 <!-- <h2 style="text-align:center">Products</h2> -->
 <div class="row">
 {% for productdata in object_list %}
+
   <div class="column">
     <div class="card">
       <img src="{{ productdata.imgURL1}}" alt="Jane" style="width:100%">
       <div class="container">
-        <h2>{{productdata.product_name}}</h2>
-	<h2>{{productdata.category}}➡{{productdata.middle_category}}</h2>
+        <h4>{{productdata.product_name}}</h4>
+	
   <p class="title">{{productdata.maker}}</p>
-	<h5>category: {{productdata.category}}</h5>
-	<h5>middle category: {{productdata.middle_category}}</h5>
-  <p><button class="button"><a href="{%url 'product-detail' productdata.pk%}">See Details</a></button></p>
+	
+	
+  <p><button class="button"><a href="{%url 'home-product-detail' productdata.pk%}">See Details</a></button></p>
       </div>
     </div>
   </div>
+  
  {% endfor %}
 </div>
 

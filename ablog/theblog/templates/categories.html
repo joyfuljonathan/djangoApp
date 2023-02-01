@@ -78,15 +78,15 @@ html {
 <body>
 
 <div class="about-section">
-  <h1>ECOLOGICS</h1>
-	<h1>oooooh</h1>
+  <h1>MerelyCommerce</h1>
+	
 
 
 </div>
 
 {% if category_products%}
 
-<h1>{{cats}} </h1>
+<h5>{{cats}} </h5>
 
 <div class="row">
 {% for productdata in category_products%}
@@ -94,9 +94,9 @@ html {
     <div class="card">
       <!-- <img src="{{ post.header_image.url}}" alt="Jane" style="width:100%"> -->
       <img src="{{ productdata.imgURL1}}" alt="Jane" style="width:100%">
-	<h5>middle category: {{productdata.middle_category}}</h5>
+	<!-- <h5>middle category: {{productdata.middle_category}}</h5> -->
       <div class="container">
-        <h2>{{productdata.product_name}}</h2>
+        <h4>{{productdata.product_name}}</h4>
 	<!-- <p>{{productdata.short_description|slice:":150"|safe}}</p> -->
   <p class="title">{{productdata.maker}}</p>
 	<!-- <h5>{{productdata.product_name}}</h5> -->

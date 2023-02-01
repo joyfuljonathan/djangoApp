@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>product details</title>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+
+.small-container{
+    max-width: 1000px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 20px;
+}
+.row{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.single-product{
+    margin-top: 80px;
+}
+.small-img-row{
+    display: flex;
+    justify-content: space-around;
+}
+.col-2 img{
+    max-width: 100%;
+    padding: 50px 0;
+}
+.small-img-col{
+    flex-basis: 24%;
+    cursor: pointer;
+}
+
+.single-product .col-2 img{
+    padding: 0;
+}
+.single-product .col-2{
+    padding: 20px;
+}
+
+.col-2{
+    flex-basis: 50%;
+    min-width: 300px;
+}
+.col-2 h1{
+    font-size: 50px;
+    padding: 10px;
+    margin: 25px 0;
+}
+
+.single-product h4{
+    margin: 20px 0;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.single-product input{
+    width: 50px;
+    height: 40px;
+    padding-left: 10px;
+    font-size: 20px;
+    margin-right: 10px;
+    border: 1px solid #ff523b;
+}
+input:focus{
+    outline: none;
+}
+a{
+    text-decoration: none;
+    color: #555;
+}
+.single-product .fa{
+    
+    margin-left: 10px;
+}
+p{
+    color: #555;
+}
+.btn{
+    display: inline-block;
+    background: #ff523b;
+    color: #fff;
+    padding: 8px 30px;
+    margin: 30px 0;
+    border-radius: 30px;
+    transition: background 0.5s;
+}
+.btn:hover{
+    background: #563434;
+}
+@media screen and (max-width:790px) {
+    h1{
+	font-size: 26px !important;;
+	}
+ 
+    .title{
+        font-size: 5px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="small-container single-product">
+        <div class="row">
+            <div class="col-2">
+                <img src="{{ homeproductdata.imgURL1}}" alt="" width="100%" id="productImg">
+                <div class="small-img-row">
+                    <div class="small-img-col">
+                        <img src="{{ homeproductdata.imgURL1}}" alt="" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="{{ homeproductdata.imgURL1}}" alt="" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="images/3.jpg" alt="" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="images/4.jpg" alt="" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="images/5.jpg" alt="" width="100%" class="small-img">
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <p>Home | Long-Sleeve</p>
+                <h1 class ="title">{{homeproductdata.product_name}}</h1>
+                <h4>￥{{homeproductdata.price}}</h4>
+		        <h5>Shipping: ￥{{homeproductdata.shipping}}</h5>
+                <input type="number" value="1">
+                <a href="" class="btn">Add to cart</a>
+                <h3>Product Details</h3>
+                    <br><p>{{homeproductdata.short_description|safe}}</p><br>
+                 <!-- <h3>Product Details<i class="fa fa-indent"></h3> -->
+                <h3>Specifications</h3>
+                    <br><p>{{homeproductdata.spec | safe}}</p>
+            </div>
+
+        </div>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+<script>
+    var productImg = document.getElementById("productImg");
+var smalling = document.getElementsByClassName("small-img");
+
+
+smalling[0].onclick = function(){
+    productImg.src = smalling[0].src;
+}
+smalling[1].onclick = function(){
+    productImg.src = smalling[1].src;
+}
+smalling[2].onclick = function(){
+    productImg.src = smalling[2].src;
+}
+smalling[3].onclick = function(){
+    productImg.src = smalling[3].src;
+}
+</script>
+</html>

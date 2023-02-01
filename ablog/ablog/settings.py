@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'theblog',
     'members',
     'ckeditor',
+    # 'import-export',
 ]
 
 MIDDLEWARE = [
