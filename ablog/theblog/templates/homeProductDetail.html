@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -104,6 +105,27 @@ p{
 .btn:hover{
     background: #563434;
 }
+
+/*iframe*/ 
+.container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 62.5%; /* 8:5 Aspect Ratio */
+  margin-top: 30px;
+}
+
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 75%;
+  height: 65%;
+  border: none;
+}
+
 @media screen and (max-width:790px) {
     h1{
 	font-size: 26px !important;;
@@ -122,10 +144,10 @@ p{
                 <img src="{{ homeproductdata.imgURL1}}" alt="" width="100%" id="productImg">
                 <div class="small-img-row">
                     <div class="small-img-col">
-                        <img src="{{ homeproductdata.imgURL1}}" alt="" width="100%" class="small-img">
+                        <img src="" alt="" width="100%" class="small-img">
                     </div>
                     <div class="small-img-col">
-                        <img src="{{ homeproductdata.imgURL1}}" alt="" width="100%" class="small-img">
+                        <img src="" alt="" width="100%" class="small-img">
                     </div>
                     <div class="small-img-col">
                         <img src="images/3.jpg" alt="" width="100%" class="small-img">
@@ -139,7 +161,7 @@ p{
                 </div>
             </div>
             <div class="col-2">
-                <p>Home | Long-Sleeve</p>
+                <p>Home | {{homeproductdata.category}}</p>
                 <h1 class ="title">{{homeproductdata.product_name}}</h1>
                 <h4>￥{{homeproductdata.price}}</h4>
 		        <h5>Shipping: ￥{{homeproductdata.shipping}}</h5>
@@ -150,8 +172,15 @@ p{
                  <!-- <h3>Product Details<i class="fa fa-indent"></h3> -->
                 <h3>Specifications</h3>
                     <br><p>{{homeproductdata.spec | safe}}</p>
-            </div>
 
+            </div>
+	
+{% if homeproductdata.video_url%}
+
+<div class="container">
+  <iframe class="responsive-iframe" src="{{homeproductdata.video_url}}"></iframe>
+</div>
+{% endif%}
         </div>
     </div>
     <script src="js/index.js"></script>

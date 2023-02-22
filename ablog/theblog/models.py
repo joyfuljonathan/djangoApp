@@ -134,6 +134,7 @@ class HomeProductData(models.Model):
     price = models.IntegerField();
     shipping = models.IntegerField();
     stock = models.IntegerField();
+    video_url = models.CharField(max_length=255, null = True, blank = True)
     def get_absolute_url(self):
         # return reverse('article-detail', args=(str(self.id)))
         return reverse('home')
