@@ -1,113 +1,634 @@
-{% extends 'base.html'%}
 {% block content %}
 <!DOCTYPE html>
+<!---tutorial URL https://www.youtube.com/watch?v=yQimoqo0-7g-->
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
+    <meta charset="UTF-8">
+    <meta name = "viewport" content = "width=device-width, initial-scale = 1.0" >
+    <title>Redstore | Ecommerce</title>
+    <link rel="stylesheet" href = "style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style> 
+	*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
-html {
-  box-sizing: border-box;
+.navbar{
+    display: flex; 
+    align-items: center; 
+    padding: 20px;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit;
+nav {
+    flex: 1;
+        text-align: right;
 }
 
-.column {
-  float: left;
-  width: 33.3%;
-  margin-bottom: 16px;
-  padding: 0 8px;
+nav ul {
+    display: inline-block;
+    list-style-type: none;
 }
 
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  margin: 10px;
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
 }
 
-.about-section {
-  padding: 70px;
-  text-align: center;
-  background-color: #474e5d;
-  color: white;
+a {
+    text-decoration: none;
+    color: #555;
+}
+
+p {
+    text-decoration: none;
+    color: #555;
+    margin: 0px;
 }
 
 .container {
-  padding: 0 16px;
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
-.container::after, .row::after {
-  content: "";
-  clear: both;
-  display: table;
+.row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.col-2 {
+flex-basis: 50%;
+min-width: 300px;
+}
+
+.col-2 img {
+    max-width: 100%;
+    padding: 50px 0; 
+    }
+
+.col-2 h1 {
+    font-size: 50px;
+    line-height: 60px;
+    margin: 0px;
+    }
+
+.btn {
+    display: inline-block;
+    background: #ff523b;
+    color: #fff;
+    padding: 8px 30px;
+    margin: 30px 0;
+    border-radius: 30px;
+    transition: background 0.5s;
+}
+
+.btn:hover {
+    background: #563434;
+}
+
+.header {
+    background: radial-gradient(#fff, #ffd6d6)
+}
+
+.header .row {
+    margin-top: 70px;
+}
+
+.categories {
+    margin: 70px 0;
+}
+
+.col-3 {
+    flex-basis: 30%;
+    min-width: 250px;
+    margin-bottom: 30px;
+}
+
+.col-3 img {
+    width: 100%;
+}
+
+.small-container {
+    max-width: 1080px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+
+}
+
+.col-4 {
+    flex-basis: 25%;
+    padding: 10px;
+    min-width: 200px;
+    margin-bottom: 50px;
+    transition: transform 0.5s;
+}
+
+.col-4 img {
+    width: 100%;
+
 }
 
 .title {
-  color: grey;
+    text-align: center;
+    margin: 0 auto 80px;
+    position: relative;
+    line-height: 60px;
+    color: #555;
 }
 
-.button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  /* background-color: #000; */
-  /* background-color: #EB365D; */
-  background-color: #363233;
-  /* background-color: #FA562D; */
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
+.title::after {
+    content: '';
+    background: #ff523b;
+    width: 80px;
+    height: 5px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 50%; 
+    transform: translateX(-50%);
 }
 
-.button:hover {
-  background-color: #555;
+h4 {
+    color: #555;
+    font-weight: normal;
 }
 
-@media screen and (max-width: 650px) {
-  .column {
+.col-4 p {
+    font-size: 14px;
+}
+
+.rating .fa{
+    color: #ff523b;
+}
+
+.col-4:hover {
+    transform: translateY(-5px);
+}
+/*-----offer------*/
+.offer {
+    background: radial-gradient(#fff, #ffd6d6);
+    margin-top:  80px;
+    padding: 30px 0;
+
+}
+
+.col-2 offer-img {
+    padding: 50px;
+}
+
+small {
+    color: #555;
+}
+
+/*------testimonial------------*/
+
+.testimonail {
+    padding-top: 100px;
+
+}
+
+.testimonial .col-3 {
+    text-align: center;
+    padding: 40px 20px;
+    box-shadow: 0 0 20px 0px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+
+.testimonial .col-3 img {
+        width: 50px;
+        margin-top: 20px;
+        border-radius: 50%;
+}
+
+.testimonial .col-3:hover{
+    transform: translateY(-10px)
+}
+
+.fa.fa-quote-left{
+    font-size: 34px;
+    color: #ff523b;
+}
+.col-3 p {
+    font-size: 12px;
+    margin: 12px 0;
+    color: #777;
+}
+
+.testimonial .col-3 h3 {
+    font-weight: 600;
+    color: #555;
+    font-size: 16px;
+}
+
+/* brands */
+.brands {
+    margin: 100px auto;
+
+}
+
+.col-5 {
+    width: 160px;
+}
+
+.col-5 img {
     width: 100%;
-    display: block;
-  }
+    cursor: pointer;
+    filter: grayscale(100%);
 }
-</style>
+
+.col-5 img:hover {
+    filter: grayscale(0);
+}
+
+/* footer */
+
+.footer {
+    background: #000;
+    color: #8a8a8a;
+    font-size: 14px;
+    padding: 60px 0 20px;
+
+}
+
+.footer p{
+    color: #8a8a8a;
+}
+
+.footer h3 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.footer-col-1, .footer-col-2, .footer-col-3, .footer-col-4 {
+    min-width: 250px;
+    margin-bottom: 20px;
+}
+
+.footer-col-1 {
+    flex-basis: 30%;
+}
+
+.footer-col-2 {
+    flex: 1;
+    text-align: center;
+}
+
+.footer-col-2 img {
+    width: 180px;
+    margin-bottom: 20px;
+}
+
+.footer-col-3, .footer-col-4 {
+    flex-basis: 12%;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.app-logo {
+    margin-top: 20px;
+}
+
+.app-logo img {
+    width: 140px;
+
+}
+
+.footer hr {
+    border: none;
+    background: #b5b5b5;
+    height: 1px;
+    margin: 20px 0;
+}
+
+.copyright {
+    text-align: center;
+}
+
+.menu-icon {
+    width: 28px;
+    margin-left: 20px;
+    display: none;
+}
+
+/* dropdown */
+.dropbtn {
+  /*background-color: #04AA6D;*/
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  /*position: relative;*/
+  display: inline-block;
+
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 500px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  float: left;
+}
+
+.dropdown-content a {
+  color: black;
+  
+  text-decoration: none;
+  display: block;
+float: left;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+float: left;
+}
+
+@media only screen and (max-width: 800px) {
+    nav ul {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background: #333;
+        width: 100%;
+        overflow: hidden;
+        transition: max-height 0.5s;
+    }
+
+    nav ul li {
+        display: block;
+        margin-right: 50px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+    }
+
+    nav ul li a {
+        color: #fff;
+    }
+
+    .menu-icon {
+        display: block;
+        cursor: pointer;
+    }
+}
+
+/* media quesry for less than 600 screen size */
+
+@media only screen and (max-width: 600px){
+    .row {
+        text-align: center;
+    }
+
+    .col-2, .col-3, .col-4 {
+
+        flex-basis: 100%;
+
+    }
+}
+    </style>
+    
 </head>
 <body>
+<div class="header">
+<div class = "container">
+    <div class = "navbar">
+        <div class = "logo">
+            <img src = "https://www.esco-net.com/wcs/escort/WebInfo/resources/sakkey/static/images/common/logo_01_esco.png" width = "125px">
+        </div>
+        <nav>
+            <ul id="MenuItems">
+	        {% if cat_menu%}
+              
+     		<div class="dropdown">
+  			<button class="dropbtn">Categories</button>
+  				<div class="dropdown-content">
+					{%for item in cat_menu%}
+                    		  <!-- <a class="dropdown-item" href="#">{{item}}</a> -->
+                     		 <a class="dropdown-item" href="{% url 'category' item %}">{{item}}</a>
+                    		{%endfor%}
+  				</div>
+		</div>
 
-<div class="about-section">
-  <h1>MerelyCommerce</h1>
-</div>
-
-
-
-<!-- <h2 style="text-align:center">Products</h2> -->
-<div class="row">
-{% for productdata in object_list %}
-
-  <div class="column">
-    <div class="card">
-      <img src="{{ productdata.imgURL1}}" alt="Jane" style="width:100%">
-      <div class="container">
-        <h4>{{productdata.product_name}}</h4>
-	
-  <p class="title">{{productdata.maker}}</p>
-	
-	
-  <p><button class="button"><a href="{%url 'home-product-detail' productdata.pk%}">See Details</a></button></p>
-      </div>
+  	   {%endif%}
+                <li><a href="">Product</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Contact</a></li>
+                <li><a href="">Account</a></li>
+		    <li><a href="">Home</a></li>
+            </ul>
+        </nav>
+        
+        <img src="images/menu.png" class = "menu-icon" onclick = "menutoggle()">
     </div>
-  </div>
-  
- {% endfor %}
+<div class = "row">
+   <div class="col-2">
+    <h1>Cosas que te ayudarán a trabajar <br> nuevos productos!</h1>
+    <p>trabajar mejor con el equipo adecuado.<br> hagámoslo juntos...</p>
+    <a href="" class="btn">Explore now &#8594;</a>     
+   </div>
+   <div class="col-2">
+    <!-- <img src="https://png2.cleanpng.com/sh/822f1518bea7edd821a9d580c63a7baa/L0KzQYm3U8MyN5pqj5H0aYP2gLBuTfNtbZJzgdDwLXHqdbB7TfhwfaRqg9ducHnxd37ojPx0d6Z3e9c2Y3zocbBwjvcubaJ6ReJ7b3T4c8W0VfFkOGI8UKIEZkXkc4O1V8Y4Omo5Sas6NUK1RYSBU8Y5PmY3T5D5bne=/kisspng-cleaning-agent-housekeeping-allsource-cleaning-equ-product-5ac017809f5ac2.7672941915225383686527.png"> -->
+    <img src="">
+   </div>  
+</div>
+</div>
 </div>
 
+<!---------featured categories----------->
+
+<div class="categories">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-3">
+                <img src="https://www.esco-net.com/wcs/escort/WebInfo/feature/images/20210004/pic_20210004_01.jpg">
+            </div>
+               
+            <div class="col-3">
+                <img src="https://www.esco-net.com/wcs/escort/ItemFile/EA9/EA983/EA983G-49/EA983G-49_IMG_WEB_OUT(01).jpg">
+            </div>
+                
+            <div class="col-3">
+                <img src="https://www.esco-net.com/wcs/escort/ItemFile/EA9/EA944/EA944N-12/EA944N-12_IMG_WEB_OUT(01).jpg">
+            </div>
+         </div>
+    
+    </div>
+</div>
+
+<!---------featured products----------->
+<div class="small-container">
+    <h2 class = "title">Featured Products</h2>
+    <div class="row">
+       {% for productdata in object_list %}
+        <div class="col-4">
+            <img src="{{ productdata.imgURL1}}">
+            <!-- <p><button class="button"><a href="{%url 'home-product-detail' productdata.pk%}">{{productdata.product_name}}</a></button></p> -->
+            <h4><a href="{%url 'home-product-detail' productdata.pk%}">{{productdata.product_name}}</a></h4>
+            <!-- <h4>{{productdata.product_name}}</h4> -->
+            <p>$80.00</p>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+            </div>
+        </div>
+{% endfor %}
+    </div>
+</div>
+<!--------offer--------->
+<div class="offer">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-2">
+                <img src="images/exclusive.png" class = "offer-img">
+            </div>
+            <div class="col-2">
+                <p>Exclusively Available on RedStore</p>
+                <h1>Smart Earphones</h1>
+                <small> This is a super duper cool thing with 50% more of what you are looking for than the thing that came before. 
+                if what you are looking for is a new thing, this is certainly it.<br></small>
+                <a href="" class ="btn">Buy Now &#8594;</a>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<!--------tesimonial------->       
+
+<div class="testimonial">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-3">
+                <i class ="fa fa-quote-left"></i>
+                <p>This is a super duper cool thing with 50% more of what you are looking for than the thing that came before. 
+                    if what you are looking for is a new thing, this is certainly it.</p>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                 </div>
+                <img src = "images/user-1.png">
+                <h3>Sean Parker</h3>
+            </div>
+            <div class="col-3">
+                <i class ="fa fa-quote-left"></i>
+                <p>This is a super duper cool thing with 50% more of what you are looking for than the thing that came before. 
+                    if what you are looking for is a new thing, this is certainly it.</p>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                 </div>
+                <img src = "images/user-2.jpg">
+                <h3>Leo</h3>
+            </div>
+            <div class="col-3">
+                <i class ="fa fa-quote-left"></i>
+                <p>This is a super duper cool thing with 50% more of what you are looking for than the thing that came before. 
+                    if what you are looking for is a new thing, this is certainly it.</p>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                 </div>
+                <img src = "images/user-3.jpg">
+                <h3>Harrison</h3>
+            </div>
+        </div>
+    </div>
+</div>
+    <!------ brands ----------> 
+    <div class="brands">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-5">
+                    <img src="images/logo-1.png" alt="">
+                </div>
+                <div class="col-5">
+                    <img src="images/logo-2.png" alt="">
+                </div>
+                <div class="col-5">
+                    <img src="images/logo-3.png" alt="">
+                </div>
+                <div class="col-5">
+                    <img src="images/logo-4.png" alt="">
+                </div>
+                <div class="col-5">
+                    <img src="images/logo-5.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>  
+    
+<!----footer----->
+
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+                <h3>Download Our App</h3>
+                <p>Download App for Android or IPhone</p>
+                <div class="app-logo">
+                    <img src = "images/app-store.png">
+                    <img src = "images/play-store.png">
+                </div>
+            </div>
+            <div class="footer-col-2">
+                <h3></h3>
+                <img src="images/logo-handwerk.png">
+                <p>Our purpose is to promote the consumption of great products through raising consumer awareness.</p> 
+            </div>    
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Blog Post</li>
+                        <li>Return Policy</li>
+                        <li>Join Affiliate</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>YouTube</li>
+                    </ul>
+                </div>
+        </div>
+        <hr>
+        <p class="copyright">Copyright 2020 - Handwerk Inc.</p>
+    </div>
+</div>
 
 </body>
 </html>
-{% endblock %}
+{% endblock%}
