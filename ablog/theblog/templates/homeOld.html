@@ -1,136 +1,120 @@
 {% extends 'base.html'%}
-
 {% block content %}
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>Document</title>
-    <style>
-       .leftcolumn {   
-      float: initial;
-      width: 13%;
-      position: fixed;
-      margin-right: 30px;
-      margin-top: 80px;
-      }
-      .middlecolumn {   
-      margin-left: 200px;
-      margin-top: 5px;
-      width: 60%;
-      }
-      /* Right column */
-      .rightcolumn {
-      /* float: right; */
-      margin-left: 1000px;
-      margin-top: auto;
-      width: 25%;
-      padding-left: 20px;
-      overflow: scroll;
-      height: 1000px;
-      position: fixed;
-      }
-      /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
-      @media screen and (max-width: 800px) {
-      .middlecolumn  {   
-       width: 100%;
-       margin-left: 0px;
-      padding: 0;
-      margin: none;
-       }
-      }   
-      @media screen and (max-width: 800px) {
-      .leftcolumn, .rightcolumn {   
-       width: 100%;
-      padding: 0;
-      display: none;
-       }
-      }   
-    </style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 10px;
+}
+
+.about-section {
+  padding: 70px;
+  text-align: center;
+  font-size: 100px;
+  /* background-image: linear-gradient(to right, red , yellow); */
+  background-image: linear-gradient(to right,#7A1036,#FF7EBE);
+  color: white;
+  font-family: 'Permanent Marker', cursive;
+
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  /* background-color: #000; */
+  /* background-color: #EB365D; */
+  background-color: #363233;
+  /* background-color: #FA562D; */
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+</style>
 </head>
-<body class="bg-white">
-  <!-- {% if user.is_authenticated %}
-    <h1>Hello, {{user.first_name}}</h1>
-  {%endif%} -->
+<body>
 
-<!-- stuff for left side. i want to make it go to the top when i scroll and 
-stick there -->
-<!-- <div class="leftcolumn bg-light">
-   {% if user.is_authenticated %}
-    <h4>Hello, {{user.first_name}}</h4>
-  {%endif%}
-  <h4>Contacts</h4>
-<ul>
-  <li>
-    susan
-  </li>
-  <li>
-    timmy
-  </li>
-  <li>
-    susan
-  </li>
-  <li>
-    timmy
-  </li>
-</ul>
-</div> -->
-
-<!-- for the right side of the page. i am thinking of adding a sub post option on the 
-post page to populate this. one idea would just be to let the poster plug in a url
-and have the link displyed nicely on the right hand side with thumbnail.  -->
-<!-- <div class="rightcolumn">
-  <ul style="list-style-type: none " >
-    {% for post in object_list %}
-    <li>
-      <div class="container p-5 my-5 bg-secondary text-white">
-      <h6>{{post.snippet}}</h6> <small><a href="{%url 'article-detail' post.pk%}" style="color: black;">Read More</a></small>
-      </div>
-    </li>
-  {% endfor %}
-  </ul>
-</div> -->
-<div name= "middle" class="middlecolumn" id="middle">
-<ul>
-{% for post in object_list %}
-  <li>
-    <h2>{{post.title}}</h2><small>{{ post.publication_date}}</small>
-    <a href="{% url 'category' post.category %}">{{post.category}}-</a> 
-    <!-- <a href="{%url 'article-detail' post.pk%}">{{post.title}} </a> - -->
-    {% if user.is_authenticated%}
-      {% if user.id == post.author.id%}
-        <small> 
-          -<a href="{%url 'update_post' post.pk%}">(edit</a>
-          <a href="{%url 'delete_post' post.pk%}">delete)</a>
-        </small>
-      {% endif%}
-    {% endif %}
-<br>
-    <div class="container bg-light p-5 my-5 border">
-     
-      <h6>{{post.snippet}}</h6> <small><a href="{%url 'article-detail' post.pk%}">Read More</a></small>
-      {% if post.header_image%}
-      <div class="clearfix">
-        <img src="{{ post.header_image.url}}" class="img-fluid" alt="">
-        <!-- <img src="{{ post.header_image.url}}" class="img-thumbnail" style="height: 400px;" alt=""> -->
-      <!-- below are some bootstrap image classes to test -->
-      <!-- class="img-thumbnail"  -->
-      <!-- class="img-fluid" -->
-      </div>
-      {% endif %}
-    </div>
-    <!-- {{ post.body|slice:":300"|safe}}</li>  -->
-  </li> 
-  {% endfor %}
-</ul>
-  </div>
+<div class="about-section">
+  <p>cooperador</p>
 </div>
+
+
+
+<!-- <h2 style="text-align:center">Products</h2> -->
+<div class="row">
+{% for productdata in object_list %}
+
+  <div class="column">
+    <div class="card">
+      <img src="{{ productdata.imgURL1}}" alt="Jane" style="width:100%">
+      <div class="container">
+        <h4>{{productdata.product_name}}</h4>
+	
+  <p class="title">{{productdata.maker}}</p>
+	
+	
+  <p><button class="button"><a href="{%url 'home-product-detail' productdata.pk%}">See Details</a></button></p>
+      </div>
+    </div>
+  </div>
+  
+ {% endfor %}
+</div>
+
 
 </body>
 </html>
 {% endblock %}
-

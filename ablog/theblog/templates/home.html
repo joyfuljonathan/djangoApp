@@ -362,6 +362,14 @@ float: left;
 float: left;
 }
 
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+/* end dropdown */
+
 @media only screen and (max-width: 800px) {
     nav ul {
         position: absolute;
@@ -420,12 +428,14 @@ float: left;
               
      		<div class="dropdown">
   			<button class="dropbtn">Categories</button>
+				
   				<div class="dropdown-content">
 					{%for item in cat_menu%}
-                    		  <!-- <a class="dropdown-item" href="#">{{item}}</a> -->
-                     		 <a class="dropdown-item" href="{% url 'category' item %}">{{item}}</a>
+                    		  
+                     		 <a class="dropdown-item" href="{% url 'category' item %}">{{item}}</a><br>
                     		{%endfor%}
   				</div>
+				
 		</div>
 
   	   {%endif%}
