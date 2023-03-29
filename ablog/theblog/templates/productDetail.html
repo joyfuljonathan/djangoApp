@@ -158,7 +158,7 @@ p{
 }
     </style>
     <!-- the script below is for img zoom  -->
-<script>
+<!-- <script>
     function imageZoom(imgID, resultID) {
   var img, lens, result, cx, cy;
   img = document.getElementById(imgID);
@@ -214,7 +214,7 @@ p{
     return {x : x, y : y};
   }
 }
-</script>
+</script> -->
 </head>
 <body>
     <div class="small-container single-product">
@@ -223,7 +223,7 @@ p{
                 <!-- the container below is for the image zoom -->
                 <div class="img-zoom-container">
                     <img id="myimage" src="{{ productdata.imgURL1}}" alt="" width="100%" id="productImg">
-                    <div id="myresult" class="img-zoom-result"></div>
+                    <!-- <div id="myresult" class="img-zoom-result"></div> -->
                 </div>
                 <div class="small-img-row">
                     <div class="small-img-col">
@@ -268,7 +268,7 @@ p{
     </div>
     <script src="js/index.js"></script>
 </body>
-<script>
+<!-- <script>
     var productImg = document.getElementById("productImg");
 var smalling = document.getElementsByClassName("small-img");
 
@@ -290,7 +290,5 @@ smalling[3].onclick = function(){
 <script>
     // Initiate zoom effect:
     imageZoom("myimage", "myresult");
-</script>
-
-
+</script> -->
 </html>
